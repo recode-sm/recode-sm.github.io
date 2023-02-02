@@ -721,3 +721,83 @@ function getDataHelpOne(){
     });
 }
 ```
+
+&nbsp; &nbsp; 
+&nbsp; &nbsp;
+## 12. 경험지식 요청글 리포트
+
+### Request
+
+`GET https://{domain}/project9/getDataQnaReport`
+
+&nbsp; &nbsp;
+### Parameters
+
+|이름|데이터명|유형|필수여부|
+|------|---|---|:---:|
+|user_token|String|외부 사용자 인증키|O|
+|brdno|String|글 번호|O|
+
+&nbsp; &nbsp; 
+### Response
+
+|이름|데이터명|유형|
+|------|---|---|
+|industry_gubun_name|산업군|String|
+|process_gubun_name|상세공정|String|
+|model|모델명|String|
+|model_com|모델제조사|String|
+|model_create_dt|제조일자|String|
+|model_install_dt|설치일자|String|
+|mold_break_yn|금형파손여부|int|
+|broken_sh_name|고장상황|String|
+|broken_hs_name|고장현상|String|
+|title|제목|String|
+|content|내용|String|
+|job_dt|작성일시|String|
+|finish_yn|채택여부|int|
+|**fileList**|**첨부 파일 목록**| |
+|ata_org_name|파일 이름|String|
+|ata_size|파일 크기|int|
+|ata_path|다운로드 주소|String|
+|preview_url|미리보기 주소|String|
+|**qnaReply**|**채택된 답변**| |
+|reply_idx|답변 순번|int|
+|content_reply|답변 내용|String|
+|job_dt|답변 작성 일시|String|
+|selected|채택 유무|String|
+|usernm|답변 장성자|String|
+|user_gubun_name|답변자 구분|String|
+|**replyFileList**|**답변 첨부 파일 목록**| |
+|rata_org_name|파일 이름|String|
+|rata_size|파일 크기|int|
+|rata_path|다운로드 주소|String|
+|reply_preview_url|미리보기 주소|String|
+|message|결과 안내문|String|
+|result|결과 코드|int |
+
+&nbsp; &nbsp;
+### Jquery 코드 샘플
+```javascript 
+function getDataQnaReport(){
+    var search ={
+        user_token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.
+        eyJ1c2Vybm8iOjg1LCJ1c2VyaWQiOiJkbXRlazEwNiIsImlhdCI6MTY3MDk4MjY0MSwiZXhwIjoxNjc4NzU4NjQxfQ.
+        iWSLtvLgUFAw8ODaDDURcILvOqJEYnx5kjOd6AZhTg8",
+        qna_idx: 93
+    }
+    $.ajax({
+        url: "https://{domain}/project9/getDataQnaReport",
+        type: "GET",
+        async: false,
+        crossDomain: true,
+        daraType: "json",
+        contentType: "text/plain",
+        mimeType: "text/plain",
+        data: search,
+        success:function(response){
+            console.log(response)
+        }
+    });
+}
+```
